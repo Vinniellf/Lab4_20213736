@@ -3,14 +3,15 @@ package com.example.tareagtics.Models.Entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Ocasion")
+@Table(name = "ocasion")
 public class Ocasion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    @Column(name = "idOcasion", nullable = false)
+    @Column(name = "idocasion", nullable = false)
     private Integer id;
-    @Column(name = "nameOcasion", length = 45)
+
+    @Column(name = "nameocasion", nullable = false, length = 45)
     private String name;
 
     public Integer getId() {

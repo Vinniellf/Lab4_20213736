@@ -5,12 +5,13 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "color")
 public class Color {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcolor", nullable = false)
     private Integer id;
 
-    @Column(name = "nameColor", length = 20)
+    @Column(name = "namecolor", length = 20)
     private String name;
 
     public Integer getId() {

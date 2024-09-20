@@ -4,17 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Flores</title>
-    <!-- Enlace a Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- Estilos adicionales (opcional) -->
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
             background-color: #f8f9fa;
         }
         .highlight {
-            background-color: #ffeb3b; /* Color amarillo */
+            background-color: #ffeb3b;
             padding: 20px;
             border-radius: 5px;
             margin-bottom: 20px;
@@ -25,18 +22,20 @@
             border-radius: 5px;
         }
         .nav-link {
-            margin-left: auto; /* Alinea el carrito a la derecha */
+            margin-left: auto;
         }
-
         .nav-item img {
-            margin-left: 10px; /* Espaciado entre los elementos */
+            margin-left: 10px;
+        }
+        .total-flores {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
         }
     </style>
-
 </head>
 <body>
 <div class="container">
-    <!-- Image and text -->
     <header class="text-center my-4">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/lab/catalogo">
@@ -57,10 +56,73 @@
         </nav>
     </header>
 
+    <section class="highlight text-center">
+        <h2>¡Celebra el 21 de septiembre con flores amarillas!</h2>
+        <p>Explora nuestra colección especial de flores amarillas.</p>
+    </section>
+
+    <!-- Filtro -->
+    <section class="mb-4">
+        <form d="filterForm" action="/lab/filtrarFlores" method="get">
+            <div class="row">
+                <div class="col-md-4">
+                    <select class="form-control" id="tipo" name="tipo">
+                        <option value="0">Selecciona Tipo</option>
+                        <option th:each="tipo : ${tipos}"
+                                th:value="${tipo.id}"
+                                th:text="${tipo.name}">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="color" name="color">
+                        <option value="0">Selecciona Color</option>
+                        <option th:each="color : ${colors}"
+                                th:value="${color.id}"
+                                th:text="${color.name}">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="ocasion" name="ocasion">
+                        <option value="0">Selecciona Ocasión</option>
+                        <option th:each="oca : ${ocasions}"
+                                th:value="${oca.id}"
+                                th:text="${oca.name}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Filtrar</button>
+        </form>
+    </section>
+
+    <section class="row mt-4" id="flowerCards">
+        <th:block th:each="flor : ${flores}">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img class="card-img-top" th:src="${flor.imagen}" alt="Imagen de ${flor.nombre}">
+                    <div class="card-body text-center">
+                        <p class="card-text" th:text="${flor.descripcion}">Descripción de la flor.</p>
+                        <h5 class="card-title" th:text="${flor.precio} + ' PEN'">Precio de la flor</h5>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-success">Agregar</button>
+                            <button type="button" class="btn btn-danger">Quitar</button>
+                            <button type="button" class="btn btn-info">Comprar directamente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </section>
+
+    <!-- Total de flores -->
+    <div class="total-flores">
+        Total de flores disponibles: <span th:text="${#lists.size(flores)}">0</span>
+    </div>
 
 </div>
 
-<!-- Scripts de Bootstrap y jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

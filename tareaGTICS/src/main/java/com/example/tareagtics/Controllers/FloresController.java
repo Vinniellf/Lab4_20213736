@@ -1,8 +1,12 @@
 package com.example.tareagtics.Controllers;
 
+import com.example.tareagtics.Models.Entities.Color;
 import com.example.tareagtics.Models.Entities.Flores;
+import com.example.tareagtics.Models.Entities.Ocasion;
+import com.example.tareagtics.Models.Entities.Tipo;
 import com.example.tareagtics.Models.Repositories.*;
 import com.example.tareagtics.Models.Repositories.FloresRepository;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,8 +36,42 @@ public class FloresController {
 
     @GetMapping("/catalogo")
     public String catalogo(Model model) {
+        List<Flores> floresList = floresRepository.findAll();
+        List<Color> colorList = colorRepository.findAll();
+        List<Tipo> tipoList = tipoRepository.findAll();
+        List<Ocasion> ocasionList = ocasionRepository.findAll();
+
+        model.addAttribute("flores", floresList);
+        model.addAttribute("colors", colorList);
+        model.addAttribute("ocasions", ocasionList);
+        model.addAttribute("tipos", tipoList);
         return "catalogo";
     }
+
+    @GetMapping("/filtrarFlores")
+    public String filtrarFlores(
+            @RequestParam("tipo") Long  tipo,
+            @RequestParam("color") Long  color,
+            @RequestParam("ocasion") Long  ocasion, Model model) {
+        List<Flores> floresList = floresRepository.findByTipoColorOcasion(tipo, color, ocasion);
+        List<Color> colorList = colorRepository.findAll();
+        List<Tipo> tipoList = tipoRepository.findAll();
+        List<Ocasion> ocasionList = ocasionRepository.findAll();
+        model.addAttribute("flores", floresList);
+        model.addAttribute("colors", colorList);
+        model.addAttribute("ocasions", ocasionList);
+        model.addAttribute("tipos", tipoList);
+        return "catalogo";
+    }
+
+    @GetMapping("/entretenimineto")
+    public String entretenimiento(Model model) {
+        return "entretenimiento";
+    }
+
+
+
+
 
     /*
     @GetMapping("/listar")

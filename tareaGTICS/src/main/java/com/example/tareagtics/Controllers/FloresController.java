@@ -1,9 +1,6 @@
 package com.example.tareagtics.Controllers;
 
-import com.example.tareagtics.Models.Entities.Color;
-import com.example.tareagtics.Models.Entities.Flores;
-import com.example.tareagtics.Models.Entities.Ocasion;
-import com.example.tareagtics.Models.Entities.Tipo;
+import com.example.tareagtics.Models.Entities.*;
 import com.example.tareagtics.Models.Repositories.*;
 import com.example.tareagtics.Models.Repositories.FloresRepository;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,12 +24,14 @@ public class FloresController {
     final ColorRepository colorRepository;
     final OcasionRepository ocasionRepository;
     final TipoRepository tipoRepository;
+    final PuntajesRepository puntajesRepository;
 
-    public FloresController(FloresRepository floresRepository, ColorRepository colorRepository, OcasionRepository ocasionRepository, TipoRepository tipoRepository) {
+    public FloresController(FloresRepository floresRepository, ColorRepository colorRepository, OcasionRepository ocasionRepository, TipoRepository tipoRepository, PuntajesRepository puntajesRepository) {
         this.floresRepository = floresRepository;
         this.colorRepository = colorRepository;
         this.ocasionRepository = ocasionRepository;
         this.tipoRepository = tipoRepository;
+        this.puntajesRepository = puntajesRepository;
     }
 
     @GetMapping("/catalogo")
@@ -66,6 +66,13 @@ public class FloresController {
 
     @GetMapping("/entretenimineto")
     public String entretenimiento(Model model) {
+        List<Puntajes> puntajesList = puntajesRepository.findAll();
+        List<Flores> floresLis1 = floresRepository.findAll();
+        List<Flores> floresLis2 = floresRepository.findAll();
+        List<Flores> listaSumada = new ArrayList<>(floresLis1);
+        listaSumada.addAll(floresLis2);
+        model.addAttribute("flores", listaSumada);
+        model.addAttribute("puntajes", puntajesList);
         return "entretenimiento";
     }
 

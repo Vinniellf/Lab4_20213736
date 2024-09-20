@@ -24,10 +24,11 @@ USE `lab4` ;
 DROP TABLE IF EXISTS `lab4`.`color` ;
 
 CREATE TABLE IF NOT EXISTS `lab4`.`color` (
-  `idColor` INT NOT NULL AUTO_INCREMENT,
-  `nameColor` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idColor`))
+  `idcolor` INT NOT NULL AUTO_INCREMENT,
+  `namecolor` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idcolor`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -37,10 +38,11 @@ DEFAULT CHARACTER SET = utf8mb3;
 DROP TABLE IF EXISTS `lab4`.`ocasion` ;
 
 CREATE TABLE IF NOT EXISTS `lab4`.`ocasion` (
-  `idOcasion` INT NOT NULL AUTO_INCREMENT,
-  `nameOcasion` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idOcasion`))
+  `idocasion` INT NOT NULL AUTO_INCREMENT,
+  `nameocasion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idocasion`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -50,10 +52,11 @@ DEFAULT CHARACTER SET = utf8mb3;
 DROP TABLE IF EXISTS `lab4`.`tipo` ;
 
 CREATE TABLE IF NOT EXISTS `lab4`.`tipo` (
-  `idtTipo` INT NOT NULL AUTO_INCREMENT,
-  `nameTipo` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idtTipo`))
+  `idtipo` INT NOT NULL AUTO_INCREMENT,
+  `nametipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idtipo`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -64,25 +67,45 @@ DROP TABLE IF EXISTS `lab4`.`flores` ;
 
 CREATE TABLE IF NOT EXISTS `lab4`.`flores` (
   `idflores` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  `imagen` LONGBLOB NOT NULL,
+  `nombre` VARCHAR(100) NOT NULL,
+  `imagen` VARCHAR(500) NOT NULL,
   `precio` DOUBLE NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(200) NOT NULL,
   `color_idcolor` INT NOT NULL,
-  `Ocasion_idOcasion` INT NOT NULL,
+  `ocasion_idocasion` INT NOT NULL,
   `tipo_idtipo` INT NOT NULL,
   PRIMARY KEY (`idflores`),
   CONSTRAINT `fk_flores_color`
     FOREIGN KEY (`color_idcolor`)
-    REFERENCES `lab4`.`color` (`idColor`),
-  CONSTRAINT `fk_flores_Ocasion1`
-    FOREIGN KEY (`Ocasion_idOcasion`)
-    REFERENCES `lab4`.`ocasion` (`idOcasion`),
+    REFERENCES `lab4`.`color` (`idcolor`),
+  CONSTRAINT `fk_flores_ocasion`
+    FOREIGN KEY (`ocasion_idocasion`)
+    REFERENCES `lab4`.`ocasion` (`idocasion`),
   CONSTRAINT `fk_flores_tipo1`
     FOREIGN KEY (`tipo_idtipo`)
-    REFERENCES `lab4`.`tipo` (`idtTipo`))
+    REFERENCES `lab4`.`tipo` (`idtipo`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_flores_color` ON `lab4`.`flores` (`color_idcolor` ASC) VISIBLE;
+
+CREATE INDEX `fk_flores_ocasion` ON `lab4`.`flores` (`ocasion_idocasion` ASC) VISIBLE;
+
+CREATE INDEX `fk_flores_tipo1` ON `lab4`.`flores` (`tipo_idtipo` ASC) VISIBLE;
+
+
+-- -----------------------------------------------------
+-- Table `lab4`.`puntajes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `lab4`.`puntajes` ;
+
+CREATE TABLE IF NOT EXISTS `lab4`.`puntajes` (
+  `idpuntajes` INT NOT NULL AUTO_INCREMENT,
+  `nickname` VARCHAR(45) NOT NULL,
+  `puntajescol` INT NOT NULL,
+  PRIMARY KEY (`idpuntajes`))
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

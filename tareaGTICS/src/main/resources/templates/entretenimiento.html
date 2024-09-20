@@ -74,9 +74,9 @@
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item">Usuario1 - 100 puntos</li>
-                    <li class="list-group-item">Usuario2 - 80 puntos</li>
-                    <li class="list-group-item">Usuario3 - 70 puntos</li>
+                    <th:block th:each="p : ${puntajes}">
+                        <li class="list-group-item" th:text="${p.name} + ' - ' + ${p.puntos} + ' puntos'"></li>
+                    </th:block>
 
                 </ul>
             </div>
@@ -84,158 +84,22 @@
     </div>
 </div>
 
-<div class="row mt-5">
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor1.jpg" class="card-img-top" alt="Flor 1">
-            <div class="card-body">
-                <h5 class="card-title">Clavel Rojo</h5>
-            </div>
+    <div class="container mt-5">
+        <div class="row">
+            <th:block th:each="flor : ${flores}">
+                <div class="col-md-3 mb-4">
+                    <div class="card text-center">
+                        <img th:src="${flor.imagen}" class="card-img-top" alt="Imagen de ${flor.nombre}">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${flor.nombre}">Nombre de la flor</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cada 4 elementos se cierra y abre una nueva fila -->
+                <th:block th:if="${florStat.index % 4 == 3}"></th:block>
+            </th:block>
         </div>
     </div>
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor2.jpg" class="card-img-top" alt="Flor 2">
-            <div class="card-body">
-                <h5 class="card-title">Rosa Blanca</h5>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor3.jpg" class="card-img-top" alt="Flor 3">
-            <div class="card-body">
-                <h5 class="card-title">Girasol Amarillo</h5>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor4.jpg" class="card-img-top" alt="Flor 4">
-            <div class="card-body">
-                <h5 class="card-title">Tulipán Azul</h5>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="row mt-5">
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor1.jpg" class="card-img-top" alt="Flor 1">
-            <div class="card-body">
-                <h5 class="card-title">Clavel Rojo</h5>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor2.jpg" class="card-img-top" alt="Flor 2">
-            <div class="card-body">
-                <h5 class="card-title">Rosa Blanca</h5>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor3.jpg" class="card-img-top" alt="Flor 3">
-            <div class="card-body">
-                <h5 class="card-title">Girasol Amarillo</h5>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor4.jpg" class="card-img-top" alt="Flor 4">
-            <div class="card-body">
-                <h5 class="card-title">Tulipán Azul</h5>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="row mt-5">
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor1.jpg" class="card-img-top" alt="Flor 1">
-            <div class="card-body">
-                <h5 class="card-title">Clavel Rojo</h5>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor2.jpg" class="card-img-top" alt="Flor 2">
-            <div class="card-body">
-                <h5 class="card-title">Rosa Blanca</h5>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor3.jpg" class="card-img-top" alt="Flor 3">
-            <div class="card-body">
-                <h5 class="card-title">Girasol Amarillo</h5>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor4.jpg" class="card-img-top" alt="Flor 4">
-            <div class="card-body">
-                <h5 class="card-title">Tulipán Azul</h5>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-<div class="row mt-5">
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor1.jpg" class="card-img-top" alt="Flor 1">
-            <div class="card-body">
-                <h5 class="card-title">Clavel Rojo</h5>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor2.jpg" class="card-img-top" alt="Flor 2">
-            <div class="card-body">
-                <h5 class="card-title">Rosa Blanca</h5>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor3.jpg" class="card-img-top" alt="Flor 3">
-            <div class="card-body">
-                <h5 class="card-title">Girasol Amarillo</h5>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 mb-4">
-        <div class="card text-center">
-            <img src="imagen_flor4.jpg" class="card-img-top" alt="Flor 4">
-            <div class="card-body">
-                <h5 class="card-title">Tulipán Azul</h5>
-            </div>
-        </div>
-    </div>
-
-</div>
 
 
 </div>

@@ -130,6 +130,24 @@ INSERT INTO `flores` VALUES (1,'Freedom', 'https://tse1.mm.bing.net/th/id/OIP.V5
 /*!40000 ALTER TABLE `flores` ENABLE KEYS */;
 UNLOCK TABLES;
 
+-- -----------------------------------------------------
+-- Table `lab4`.`puntajes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `lab4`.`puntajes` ;
+
+CREATE TABLE IF NOT EXISTS `lab4`.`puntajes` (
+  `idpuntajes` INT NOT NULL AUTO_INCREMENT,
+  `nickname` VARCHAR(45) NOT NULL,
+  `puntajescol` INT NOT NULL,
+  PRIMARY KEY (`idpuntajes`))
+ENGINE = InnoDB;
+
+LOCK TABLES `puntajes` WRITE;
+/*!40000 ALTER TABLE `puntajes` DISABLE KEYS */;
+INSERT INTO `puntajes` VALUES (1, 'Alejandro Pineda', 100), (2, 'VinnieTelecom', 80), (3, 'Julio Carrion', 60);
+/*!40000 ALTER TABLE `puntajes` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

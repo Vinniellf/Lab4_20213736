@@ -15,9 +15,13 @@ import java.util.List;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.LocationViewHolder> {
     private List<Location> locationList;
+    private OnItemClickListener listener;
 
     public LocationAdapter(List<Location> locationList) {
         this.locationList = locationList;
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,14 +39,21 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         holder.tvCountry.setText("País: " +location.getCountry());
         holder.tvId.setText("Id: " + location.getId());
         holder.tvCoordenadas.setText("Lat: " + location.getLat() + " / Lon: " + location.getLon());
+        holder.bind(location, listener);
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(Location location);
+    }
+
+
 
     @Override
     public int getItemCount() {
         return locationList.size();
     }
 
-    public static class LocationViewHolder extends RecyclerView.ViewHolder {
+    public class LocationViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvRegion, tvCountry, tvCoordenadas, tvId;
 
         public LocationViewHolder(View itemView) {
@@ -52,6 +63,14 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
             tvCountry = itemView.findViewById(R.id.tvCountry);
             tvCoordenadas = itemView.findViewById(R.id.tvCoordenadas);
             tvId = itemView.findViewById(R.id.tvId);
+        }
+
+        public void bind(Location location, OnItemClickListener listener) {
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onItemClick(location);
+                }
+            });
         }
     }
 }

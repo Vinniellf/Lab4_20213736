@@ -36,9 +36,6 @@ public class AppActivity extends AppCompatActivity {
             return true;
         });
 
-
-
-        // Cargar el fragmento inicial
         if (savedInstanceState == null) {
             loadFragment(new LocationFragment());
         }
@@ -48,7 +45,6 @@ public class AppActivity extends AppCompatActivity {
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.adminhotel_container_view, fragment);
-        //transaction.addToBackStack(null);
         transaction.commit();
     }
 }

@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    //Aquí también lo hice con IA
     private boolean comprobarConexion() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 

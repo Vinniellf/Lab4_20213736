@@ -43,25 +43,36 @@ public class LocationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_location, container, false);
 
         etSearch = view.findViewById(R.id.etSearch);
         btnSearch = view.findViewById(R.id.btnSearch);
 
-        // Initialize UI components
         recyclerView = view.findViewById(R.id.recyclerLocaciones);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         locationAdapter = new LocationAdapter(locationList);
         recyclerView.setAdapter(locationAdapter);
 
-        // Set up button click listener for search
+        locationAdapter.setOnItemClickListener(location -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("locationId", location.getId());
+
+            PronosticoFragment pronosticoFragment = new PronosticoFragment();
+            pronosticoFragment.setArguments(bundle);
+
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.adminhotel_container_view, pronosticoFragment)
+                    .addToBackStack(null)
+                    .commit();
+        });
+
         btnSearch.setOnClickListener(v -> searchLocation(etSearch.getText().toString()));
 
         return view;
     }
 
-
+    //Esta parte está hecha con IA
     public void searchLocation(String query) {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
 

@@ -51,13 +51,12 @@ public class FuturoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_futuro, container, false);
 
-        // Initialize UI components
         recyclerView = view.findViewById(R.id.recyclerFuturo);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        //cargarEjemplos();
+
         futuroAdapter = new FuturoAdapter(horaList, getContext());
         recyclerView.setAdapter(futuroAdapter);
 
@@ -68,7 +67,7 @@ public class FuturoFragment extends Fragment {
 
         return view;
     }
-
+    //Esta parte está hecha con IA
     public void searchFuturo(String id, String day) {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
 

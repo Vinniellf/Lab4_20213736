@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Locaciones"
+        android:icon="@drawable/location_icon"
+        android:id="@+id/Locaciones">
+    </item>
+    <item
+        android:title="Pronostico"
+        android:icon="@drawable/clima_icon"
+        android:id="@+id/Pronostico">
+    </item>
+    <item
+        android:title="Futuro"
+        android:icon="@drawable/futuro_icon"
+        android:id="@+id/Futuro">
+    </item>
+</menu>

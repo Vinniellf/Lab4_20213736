@@ -6,4 +6,9 @@
     <color name="card">#E8F5E9</color>
     <color name="fondo">#ECEFF1</color>
     <color name="res">#91E494</color>
+    <color name="menu">#3F51B5</color>
+    <color name="gris_medio">#757575</color>
+    <color name="text">#EBEBEB</color>
+    <color name="fondoapp">#C0E3FD</color>
+
 </resources>

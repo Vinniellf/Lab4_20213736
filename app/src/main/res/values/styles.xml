@@ -4,4 +4,12 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">60dp</item>
     </style>
+
+    <style name="CustomBottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <!-- Color de fondo -->
+        <item name="backgroundTint">@color/white</item>
+        <!-- Color de íconos y texto seleccionados -->
+        <item name="itemIconTint">@color/nav_item_color_selecto</item>
+        <item name="itemTextColor">@color/nav_item_color_selecto</item>
+    </style>
 </resources>

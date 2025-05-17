@@ -84,6 +84,7 @@ public class PronosticoFragment extends Fragment implements SensorEventListener 
         return view;
     }
 
+    //Esta parte se hizo con IA
     public void buscarPronostico(String id, String dias) {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
 
